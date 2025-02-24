@@ -47,8 +47,8 @@ func CreateInvoice(c *gin.Context) {
 	externalId := RandomInt(1, 10000)
 	createInvoiceRequest := *invoice.NewCreateInvoiceRequest(externalId, float64(invoiceBody.Amount)) // [REQUIRED] | CreateInvoiceRequest
 	createInvoiceRequest.PaymentMethods = []string{invoiceBody.PaymentMethod}
-	createInvoiceRequest.SuccessRedirectUrl = StrPtr(utils.Env["XENDIT_SUCCESS_REDIRECT_URL"])
-	createInvoiceRequest.FailureRedirectUrl = StrPtr(utils.Env["XENDIT_FAILURE_REDIRECT_URL"])
+	createInvoiceRequest.SuccessRedirectUrl = StrPtr(os.Getenv("XENDIT_SUCCESS_REDIRECT_URL"))
+	createInvoiceRequest.FailureRedirectUrl = StrPtr(os.Getenv("XENDIT_FAILURE_REDIRECT_URL"))
 
 	resp, r, err := utils.XenditClient.InvoiceApi.CreateInvoice(c).
 		CreateInvoiceRequest(createInvoiceRequest).
