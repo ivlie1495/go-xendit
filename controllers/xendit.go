@@ -40,7 +40,8 @@ func InvoiceCreated(c *gin.Context) {
 		return
 	}
 
-	json.MarshalIndent(invoiceBody, "", "    ")
+	j, _ := json.MarshalIndent(invoiceBody, "", "🐱")
+	fmt.Println(string(j))
 
 	c.JSON(200, gin.H{
 		"data": invoiceBody,
