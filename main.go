@@ -14,6 +14,7 @@ func main() {
 
 	server.GET("/xendit-get-invoice-list", controllers.GetInvoices)
 	server.POST("/xendit-create-invoice", controllers.CreateInvoice)
+	server.POST("/xendit-webhook-invoice-created", controllers.GetInvoices)
 
 	server.Run(":8080")
 }

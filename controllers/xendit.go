@@ -29,6 +29,24 @@ func GetInvoices(c *gin.Context) {
 	})
 }
 
+func InvoiceCreated(c *gin.Context) {
+	invoiceBody := models.InvoiceCreated{}
+	errBody := c.ShouldBindJSON(&invoiceBody)
+
+	if errBody != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"message": "Could not parse request body",
+		})
+		return
+	}
+
+	json.MarshalIndent(invoiceBody, "", "    ")
+
+	c.JSON(200, gin.H{
+		"data": invoiceBody,
+	})
+}
+
 func StrPtr(s string) *string {
 	return &s
 }
