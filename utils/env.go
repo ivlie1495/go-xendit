@@ -7,7 +7,7 @@ import (
 )
 
 func LoadEnv() map[string]string {
-	env, err := godotenv.Read(".env")
+	env, err := godotenv.Read()
 
 	if err != nil {
 		log.Fatalf("Error loading .env file")
